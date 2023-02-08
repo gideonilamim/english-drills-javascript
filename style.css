@@ -1,0 +1,126 @@
+* {
+  /* <-- is the default styling */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  display: flex; /* this turns the element into a flex container  A flex container expands items to fill available free space or shrinks them to prevent overflow.*/
+  justify-content: center;
+  width: 60%;
+}
+
+.continue {
+  display: flex;
+  align-items: center;
+  flex-direction: column; /*this kind of rotates the flexbox 90 degrees. the centered align-items align the items horizontally now. The Justify-content now space the content vertically.*/
+  width: 50%;
+  min-height: 34rem;
+}
+
+.group {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+
+  /*now let's create the box look to the div*/
+  background-color: rgba(var(--d87, 255, 255, 255), 1);
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  width: 100%; /*50% of it's parent class*/
+  padding: 1.3rem 0;
+  /*----------------------------------------*/
+}
+
+.group:nth-child(1) {
+  /*nth-child(n) --> Style the nth instance of the class */
+  margin-top: 10px;
+  min-height: 10px;
+  margin-bottom: 1.3rem;
+}
+
+button {
+  margin: 0;
+  background-color: rgba(var(--d69, 0, 149, 246), 1);
+  border: 1px solid transparent;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 5px 9px;
+  text-align: center;
+  color: #fff;
+  transition: all 300ms;
+}
+
+.guess_form input {
+  width: 78px;
+  height: 28px;
+}
+
+.button-selected {
+  background-color: rgb(64, 72, 142);
+}
+
+.my_guess {
+  color: rgb(64, 72, 142);
+  font-size: 30px;
+}
+
+.answer {
+  font-size: 20px;
+}
+
+.answerList {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+.answerList li {
+  max-width: 90%;
+  font-size: 25px;
+  padding: 5px;
+}
+
+.hidden {
+  display: none;
+  transition: all 5s;
+}
+
+/*media queries*/
+
+@media (max-width: 1024px) {
+  .instagram-wrapper {
+    width: 90%; /* this widens the screen, so the content won't touch each other. that allows it to be responsive*/
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    background-color: #fff;
+  }
+
+  .wrapper {
+    width: 90%;
+  }
+  .continue {
+    width: 900px;
+  }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Instagram</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="continue">
+        <div class="group">
+            <div class="pronouns">
+                <button id="heSelector">HE</button>
+                <button id="sheSelector">SHE</button>
+                <button id="itSelector">IT</button>
+           </div>  
+           <div class="ageGroup">
+                <button id="childSelector">child</button>
+                <button id="youngSelector">young</button>
+                <button id="adultSelector">adult</button>
+                <button id="olderSelector">older</button>
+           </div>  
+        </div>
+        <div class="group">
+           
+              <h1>Enter your guess</h1>
+                <form class="guess_form" onsubmit="return false">
+                  <input type="number" id="ageInput" name="ageGuess"/>
+                  <button id="ageInputBtn" class="button">guess</button>
+                </form>
+                <span id="myGuess" class="my_guess ">45?</span>
+                <button id="olderOrYoungerBtn" class="button">older or younger?</button>
+           
+         </div>
+         <div id="answerDiv" class="group">
+              <h1 id="answerText" class="answer">NO</h1>
+              <img id="emoji" src="no.png" width="80px" length="80px">
+              <h2 id="olderOrYoungerAnswer" class="answer">he's younger than that</h2>
+         </div>
+         <div id="answerListDiv"class="group">
+           <div>
+              <h1>Guesses:</h1>
+              <ul id="answerList" class="answerList">
+              </ul>
+           </div>   
+         </div> 
+        </div>
+      </div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>
