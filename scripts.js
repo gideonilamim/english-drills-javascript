@@ -132,9 +132,8 @@ hideAnswer();
 //this is where everything happens
 function submitHandler() {
   guess = Number(inputField.value);
-  let questionText = askQuestion(guess);
-
-  if (questionText) {
+  if (guess && guess > 0 && !guesses.includes(guess)) {
+    let questionText = askQuestion(guess);
     myGuessText.textContent = questionText;
     guesses.push(guess);
     appendItem(guesses[guesses.length - 1]);
@@ -155,7 +154,6 @@ function olderOrYoungerHandler() {
   }
 }
 
-//make elements hidden at first
 function hideAnswer() {
   myGuessText.classList.add("hidden");
   olderOrYoungerBtn.classList.add("hidden");
@@ -166,6 +164,7 @@ function hideAnswer() {
 }
 
 function showAnswer() {
+  inputDisable(true);
   myGuessText.classList.remove("hidden");
   emojiChange("maybe");
   answerDiv.classList.remove("hidden");
@@ -176,14 +175,21 @@ function showAnswer() {
     emojiChange(answer ? "yes" : "no");
     answerText.classList.remove("hidden");
     answerDiv.classList.remove("hidden");
+    inputDisable(false);
   }, 3000);
+}
+
+function inputDisable(toggle) {
+  if (toggle) {
+    inputField.setAttribute("disabled", "");
+  } else {
+    inputField.removeAttribute("disabled");
+  }
 }
 
 function askQuestion(age) {
   let questionText;
-  if (age && age > 0) {
-    questionText = `Is ${pronoun} ${age} ${age > 1 ? "years" : "year"} old? `;
-  }
+  questionText = `Is ${pronoun} ${age} ${age > 1 ? "years" : "year"} old? `;
   return questionText;
 }
 
