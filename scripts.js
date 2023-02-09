@@ -119,26 +119,13 @@ const answerText = document.getElementById("answerText");
 const olderOrYoungerAnswer = document.getElementById("olderOrYoungerAnswer");
 const answerList = document.getElementById("answerList");
 const emoji = document.getElementById("emoji");
+const attempts = document.getElementById("attempts");
 
 submitBtn.addEventListener("click", submitHandler);
 inputField.addEventListener("focus", () => hideAnswer());
 olderOrYoungerBtn.addEventListener("click", olderOrYoungerHandler);
 let guess;
-
-//make elements hidden at first
-function hideAnswer() {
-  myGuessText.classList.add("hidden");
-  olderOrYoungerBtn.classList.add("hidden");
-  answerDiv.classList.add("hidden");
-  olderOrYoungerAnswer.classList.add("hidden");
-}
-function showAnswer() {
-  myGuessText.classList.remove("hidden");
-  setTimeout(() => {
-    if (guess != randomAge) olderOrYoungerBtn.classList.remove("hidden");
-    answerDiv.classList.remove("hidden");
-  }, 3000);
-}
+let answer;
 
 hideAnswer();
 
@@ -156,27 +143,6 @@ function submitHandler() {
   }
 }
 
-function askQuestion(age) {
-  let questionText;
-  if (age && age > 0) {
-    questionText = `Is ${pronoun} ${age} ${age > 1 ? "years" : "year"} old? `;
-  }
-  return questionText;
-}
-
-function giveAnswer(check) {
-  const emojiChange = (answer) => (emoji.src = `${answer}.png`);
-
-  if (check) {
-    answerText.textContent = "YES";
-    emojiChange("yes");
-    ("yes.png");
-  } else {
-    answerText.textContent = "NO";
-    emojiChange("no");
-  }
-}
-
 function olderOrYoungerHandler() {
   console.log(guess, randomAge);
   if (guess != randomAge) {
@@ -189,10 +155,58 @@ function olderOrYoungerHandler() {
   }
 }
 
+//make elements hidden at first
+function hideAnswer() {
+  myGuessText.classList.add("hidden");
+  olderOrYoungerBtn.classList.add("hidden");
+  answerDiv.classList.add("hidden");
+  answerText.classList.add("hidden");
+  emoji.classList.add("hidden");
+  olderOrYoungerAnswer.classList.add("hidden");
+}
+
+function showAnswer() {
+  myGuessText.classList.remove("hidden");
+  emojiChange("maybe");
+  answerDiv.classList.remove("hidden");
+  emoji.classList.remove("hidden");
+
+  setTimeout(() => {
+    if (guess != randomAge) olderOrYoungerBtn.classList.remove("hidden");
+    emojiChange(answer ? "yes" : "no");
+    answerText.classList.remove("hidden");
+    answerDiv.classList.remove("hidden");
+  }, 3000);
+}
+
+function askQuestion(age) {
+  let questionText;
+  if (age && age > 0) {
+    questionText = `Is ${pronoun} ${age} ${age > 1 ? "years" : "year"} old? `;
+  }
+  return questionText;
+}
+
+function emojiChange(file) {
+  emoji.src = `${file}.png`;
+}
+
+function giveAnswer(check) {
+  if (check) {
+    answerText.textContent = "YES";
+    answer = true;
+  } else {
+    answerText.textContent = "NO";
+    answer = false;
+  }
+}
+
 function appendItem(text) {
   let li = document.createElement("li");
   li.appendChild(document.createTextNode(text));
   answerList.appendChild(li);
+
+  attempts.textContent = guesses.length;
 }
 
 function checkAnswer(answer) {
@@ -202,5 +216,3 @@ function checkAnswer(answer) {
     return false;
   }
 }
-
-function makeVisible(element) {}
