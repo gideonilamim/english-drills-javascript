@@ -86,12 +86,14 @@ button {
   font-size: 20px;
 }
 
+.attemptsList {
+  width: 80%;
+}
 .answerList {
   list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   flex-wrap: wrap;
-  max-width: 90%;
 }
 .answerList li {
   max-width: 90%;
